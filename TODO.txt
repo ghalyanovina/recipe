@@ -1,0 +1,12 @@
+-halaman edit profil
+x notif
+*tambah thread
+-edit thread
+-komentar
+x like
+-edit profil
+
+-foto thumbnail thread
+-WYSIWYG
+-filter field daftar
+-tampilan daftar diapik i
