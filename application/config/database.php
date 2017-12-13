@@ -74,12 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
+	'dsn'	=> '//localhost/XE',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'masakan',
-	'dbdriver' => 'mysqli',
+	'username' => 'mamase',
+	'password' => 'aku',
+	'database' => 'mamase',
+	'dbdriver' => 'oracle',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
