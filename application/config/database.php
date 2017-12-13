@@ -74,15 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	//nambah iki
-	'dsn'	=> '//localhost/XE',
-	//ganti iki
+	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'mamase',
-	'password' => 'aku',
-	'database' => 'mamase',
-	//karo driver e iki
-	'dbdriver' => 'oci8',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'masakan',
+	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

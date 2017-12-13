@@ -12,12 +12,12 @@ class tbl_kategori extends CI_Model {
 
         function loadKategori()
         {
-                $query = $this->db->query("SELECT * FROM \"tbl kategori\"");
+                $query = $this->db->query("SELECT * FROM `tbl kategori`");
                 return $query->result();
         }
         function cari($id)
         {
-                $query = $this->db->query("SELECT * FROM \"tbl kategori\" WHERE id_kategori=".$id);
+                $query = $this->db->query("SELECT * FROM `tbl kategori` WHERE id_kategori=".$id);
                 return $query->row();
         }
 }
