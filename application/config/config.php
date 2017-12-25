@@ -524,7 +524,7 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 //DEFINISIKAN PROPINSI
-define('PROPINSI', [
+$PROPINSI = [
 		'Jawa Timur',
 		'Jawa Barat',
 		'Jawa Tengah',
@@ -558,5 +558,5 @@ define('PROPINSI', [
 		' Maluku ',
 		' Maluku Utara ',
 		'Papua Barat ',
-		'Papua ',
-	]);
+		'Papua '
+	];

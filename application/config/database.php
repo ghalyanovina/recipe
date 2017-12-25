@@ -78,9 +78,9 @@ $db['default'] = array(
 	'dsn'	=> '//localhost/XE',
 	//ganti iki
 	'hostname' => 'localhost',
-	'username' => 'mamase',
-	'password' => 'aku',
-	'database' => 'mamase',
+	'username' => 'baru',//gantinen username mu kro password mu neng oracle
+	'password' => 'rahasia',
+	'database' => 'baru',
 	//karo driver e iki
 	'dbdriver' => 'oci8',
 	'dbprefix' => '',

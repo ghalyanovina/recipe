@@ -26,7 +26,7 @@
 					</thead>
 					<tbody>
 						<?php 
-						$data = $this->db->order_by('WAKTU_POST', 'DESC')->get("tbl_adminberita")->result();
+						$data = $this->db->order_by('WAKTU_POST', 'DESC')->get("TBL_ADMINBERITA")->result();
 						$no = 0;
 						foreach ($data as $pengumuman) {
 							$no++;
@@ -52,23 +52,31 @@
 	<br>
 	<div class="row">
 		<?php 
-
 		$perhal = 20;
-		$semua = $this->db->query("SELECT count(id_thread) as total FROM `tbl thread`")->row();
-		$jumlahHal = ceil($semua->total/$perhal);
-		$query = "SELECT t.id_thread AS id_thread, t.judul AS judul, t.foto AS foto, t.isi AS isi, t.waktu_post AS waktu_post, k.kategori AS kategori, u.nama AS penulis from `tbl thread` as t LEFT JOIN `tbl kategori` AS k ON t.id_kategori=k.id_kategori LEFT JOIN user AS u ON u.username=t.username";
-		if(isset($_GET['cari'])) {
-			$query = $query . " WHERE t.judul LIKE '%$ygdicari%' OR t.isi LIKE '%$ygdicari%'";
+		$semua = $this->db->query("SELECT count(id_thread) as total FROM tbl_thread")->row();
+		$jumlahHal = ceil($semua->TOTAL/$perhal);
+		$query = "SELECT 
+		tbl_thread.id_thread AS id_thread, 
+		tbl_thread.judul AS judul, 
+		tbl_thread.foto AS foto, 
+		tbl_thread.isi AS isi, 
+		tbl_thread.waktu_post AS waktu_post, 
+		tbl_kategori.kategori AS kategori, 
+		users.nama AS penulis 
+		FROM tbl_thread 
+		LEFT JOIN tbl_kategori ON tbl_thread.id_kategori=tbl_kategori.id_kategori 
+		LEFT JOIN users ON users.username=tbl_thread.username";
+		/*if(isset($_GET['cari'])) {
+			$query = $query . " WHERE tbl_thread.judul LIKE '%$ygdicari%' OR tbl_thread.isi LIKE '%$ygdicari%'";
 		}
-		$query = $query . " order by waktu_post desc";
+		$query = $query . " order by tbl_thread.waktu_post desc";
 		if($hal !== '') {
 			$mulai = ($hal - 1) * $perhal;
-			$query = $query." LIMIT $mulai, $perhal";
+			$query = $query." OFFSET $mulai ROWS FETCH NEXT $perhal ROWS ONLY";
 		} else {
 			$hal=1;
-			$query = $query." LIMIT 0, $perhal";
-		}
-
+			$query = $query." OFFSET 0 ROWS FETCH NEXT $perhal ROWS ONLY";
+		}*/
 		$thread = $this->db->query($query)->result();
 		if(count($thread) > 0) {
 		foreach ($thread as $post) {

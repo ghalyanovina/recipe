@@ -17,6 +17,8 @@ class Welcome extends CI_Controller {
 	{
 		$this->cekLogin();
 		$this->tampilkan('Home', 'home', array('hal'=>$hal));
+		/*$this->load->model('tbl_admin');
+		var_dump($this->tbl_admin->cobaAmbilData());*/
 	}
 	public function kategori($id ='', $hal='')
 	{

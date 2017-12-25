@@ -25,6 +25,9 @@ class tbl_admin extends CI_Model {
                 return $query->row();
         }
 
-        
+        function cobaAmbilData() {
+                $query = $this->db->query('SELECT * FROM TBL_ADMIN');
+                return $query->result();
+        }
 
 }

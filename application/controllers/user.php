@@ -33,8 +33,10 @@ class User extends CI_Controller {
 		$this->load->model('tbl_user');
 		$hasil=$this->tbl_user->loginUser($this->input->post("username"), $this->input->post("password"));
 		if (empty($hasil)) {
-			redirect("/login/gagal");
-		} else{
+			var_dump($this->input->post());
+			var_dump($hasil);
+			 redirect("/login/gagal");
+		} else {
 			$this->session->set_userdata("username", $hasil->username);
 			$this->session->set_userdata("nama", $hasil->nama);
 			$this->session->set_userdata("email", $hasil->email);

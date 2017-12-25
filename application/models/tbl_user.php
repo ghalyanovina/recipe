@@ -18,17 +18,17 @@ class tbl_user extends CI_Model {
         function loginUser($username , $password)
         {
                 $password = md5($password);
-                $query = $this->db->query("SELECT * FROM `user` where username='$username'and password='$password'");
+                $query = $this->db->query("SELECT * FROM USERS where USERNAME='$username' and PASSWORD='$password'");
                 return $query->row();
         }
 
         function userAda($username) {
-                $query = $this->db->query("SELECT username from user where username='$username'");
+                $query = $this->db->query("SELECT username from USERS where username='$username'");
                 return $query->row();
         }
 
         function emailAda($email) {
-                $query = $this->db->query("SELECT email from user where email='$email'");
+                $query = $this->db->query("SELECT email from USERS where email='$email'");
                 return $query->row();
         }
 
@@ -40,7 +40,7 @@ class tbl_user extends CI_Model {
                         'email' => $this->email,
                         'password' => md5($this->password)
                 ];
-                return $this->db->insert('user', $data);
+                return $this->db->insert('users', $data);
         }
         
 
