@@ -23,24 +23,26 @@ class tbl_user extends CI_Model {
         }
 
         function userAda($username) {
-                $query = $this->db->query("SELECT username from USERS where username='$username'");
+                $query = $this->db->query("SELECT USERNAME from USERS where USERNAME='$username'");
                 return $query->row();
         }
 
         function emailAda($email) {
-                $query = $this->db->query("SELECT email from USERS where email='$email'");
+                $query = $this->db->query("SELECT EMAIL from USERS where EMAIL='$email'");
                 return $query->row();
         }
 
         function tambahUser()
         {
-                $data = [
-                        'username' => $this->username,
-                        'nama' => $this->nama, 
-                        'email' => $this->email,
-                        'password' => md5($this->password)
-                ];
-                return $this->db->insert('users', $data);
+                /*$data = [
+                        'USERNAME' => $this->username,
+                        'NAMA' => $this->nama, 
+                        'EMAIL' => $this->email,
+                        'PASSWORD' => md5($this->password)
+                ];*/
+                $query = $this->db->query("INSERT INTO USERS (USERNAME, NAMA, EMAIL, PASSWORD) VALUES ('{$this->username}', '{$this->nama}', '{$this->email}', '{md5($this->password)}')");
+                // return $this->db->insert('USERS', $data);
+                return $query;
         }
         
 

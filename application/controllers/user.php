@@ -190,7 +190,7 @@ class User extends CI_Controller {
 		redirect("/".$this->session->userdata('username'));
 	}
 	function lihatProfil($username) {
-		$user = $this->db->query("SELECT * FROM user WHERE username='".$username."'")->row();
+		$user = $this->db->query("SELECT * FROM USERS WHERE USERNAME='".$username."'")->row();
 		if(!$user) {
 			show_404();
 		} else {
@@ -204,7 +204,7 @@ class User extends CI_Controller {
 	{
 		$nama = $this->input->post('nama');
 		$bio = $this->input->post('bio');
-		$update = $this->db->query("UPDATE user SET nama='$nama', bio='$bio' WHERE username='{$this->session->userdata('username')}'");
+		$update = $this->db->query("UPDATE USERS SET NAMA='$nama', BIO='$bio' WHERE USERNAME='{$this->session->userdata('username')}'");
 		if($update) {
 			redirect("/".$this->session->userdata('username'));
 		}
@@ -254,8 +254,8 @@ class User extends CI_Controller {
 	function cekUser()
 	{
 		$username = $this->input->get('username');
-		$this->db->where('username', $username);
-		$hasil = $this->db->count_all_results('user');
+		$this->db->where('USERNAME', $username);
+		$hasil = $this->db->count_all_results('USERS');
 		if ($hasil > 0) {
 			echo '1';
 		} else {
