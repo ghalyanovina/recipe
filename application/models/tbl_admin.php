@@ -16,12 +16,12 @@ class tbl_admin extends CI_Model {
         function loginAdmin($username , $password)
         {
                 $password = md5($password);
-                $query = $this->db->query("SELECT * FROM tbl_admin where USERNAME='$username'and PASSWORD='$password'");
+                $query = $this->db->query("SELECT * FROM TBL_ADMIN where USERNAME='$username'and PASSWORD='$password'");
                 return $query->row();
         }
 
         function userAda($username) {
-                $query = $this->db->query("SELECT username from tbl_admin where username='$username'");
+                $query = $this->db->query("SELECT USERNAME from TBL_ADMIN where USERNAME='$username'");
                 return $query->row();
         }
 

@@ -52,7 +52,7 @@ if(!$this->session->has_userdata('admin')) {
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown user-dropdown">
                         <?php
-                        $user = $this->db->where('USERNAME', $this->session->userdata('admin'))->get('tbl_admin')->row();
+                        $user = $this->db->where('USERNAME', $this->session->userdata('admin'))->get('TBL_ADMIN')->row();
                         ?>
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $user->USERNAME ?><b class="caret"></b></a>
                        <ul class="dropdown-menu">

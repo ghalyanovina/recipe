@@ -8,12 +8,12 @@ $this->load->view("admin/header");
                 <legend>Tambah kategori</legend>
                 <?php if($id !== '') { ?>
                 <input type="hidden" name="id" value="<?php echo $id ?>">
-                <?php $kategori = $this->db->query("SELECT * FROM `tbl kategori` WHERE id_kategori='$id'")->row();
+                <?php $kategori = $this->db->query("SELECT * FROM tbl_kategori WHERE id_kategori='$id'")->row();
                 ?>
                 <?php } ?>
                 <div class="form-group">
                     <label for="kategori">Kategori</label>
-                    <input type="text" name="kategori" placeholder="Kategori.." id="kategori" class="form-control" value="<?= $id == '' ? '' : $kategori->kategori ?>">
+                    <input type="text" name="kategori" placeholder="Kategori.." id="kategori" class="form-control" value="<?= $id == '' ? '' : $kategori->KATEGORI ?>">
                 </div>
                 <div class="form-group">
                     <?php if ($id !== '') { ?>
@@ -36,13 +36,13 @@ $this->load->view("admin/header");
                     </thead>
                     <tbody>
                         <?php 
-                        $query = $this->db->query("SELECT * FROM `tbl kategori`")->result();
+                        $query = $this->db->query("SELECT * FROM TBL_KATEGORI")->result();
                         $no = 0;
                         foreach($query as $kategori) {
                             $no++;
                         ?>
                         <tr>
-                            <td><?= $no ?></td><td><?= $kategori->kategori ?></td><td><div class="btn-group"><a href="/admin/kategori/<?php echo $kategori->id_kategori ?>"class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a><a href="/admin/hapuskategori/<?php echo $kategori->id_kategori ?>"class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></div></td>
+                            <td><?= $no ?></td><td><?= $kategori->KATEGORI ?></td><td><div class="btn-group"><a href="/admin/kategori/<?php echo $kategori->ID_KATEGORI ?>" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a><a href="/admin/hapuskategori/<?php echo $kategori->ID_KATEGORI ?>"class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></div></td>
                         </tr>
                         <?php } ?>
                     </tbody>

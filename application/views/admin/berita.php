@@ -10,7 +10,7 @@ $this->load->view("admin/header");
 				<fieldset>
 					<?php
 					if($id !== '') {
-						$query = $this->db->get_where("tbl_adminberita", array('ID_BERITA'=>$id))->row();
+						$query = $this->db->get_where("TBL_ADMINBERITA", array('ID_BERITA'=>$id))->row();
 						echo "<input type='hidden' name='id' value='$id'>";
 					}
 					?>
@@ -55,7 +55,7 @@ $this->load->view("admin/header");
 						</thead>
 						<tbody>
 							<?php
-							$data = $this->db->get("tbl_adminberita")->result();
+							$data = $this->db->get("TBL_ADMINBERITA")->result();
 							$no = 0;
 							foreach ($data as $berita) {
 								$no++;

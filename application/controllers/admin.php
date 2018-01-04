@@ -27,7 +27,7 @@ class Admin extends CI_Controller {
 	public function simpankategori()
 	{
 		$kategori = $this->input->post('kategori');
-		$query= $this->db->query("INSERT INTO `tbl kategori`(kategori) VALUES('$kategori')");
+		$query= $this->db->query("INSERT INTO tbl_kategori (kategori) VALUES('$kategori')");
 		if ($query) {
 			echo "<script>alert('Kategori berhasil di tambahkan.'); location.href='/admin/kategori'</script>";
 		} else {
@@ -38,7 +38,7 @@ class Admin extends CI_Controller {
 	{
 		$id = $this->input->post('id');
 		$kategori = $this->input->post('kategori');
-		$query= $this->db->query("UPDATE `tbl kategori` SET kategori='$kategori' WHERE id_kategori = '$id'");
+		$query= $this->db->query("UPDATE tbl_kategori SET kategori='$kategori' WHERE id_kategori = '$id'");
 		if ($query) {
 			echo "<script>alert('Kategori berhasil diganti.'); location.href='/admin/kategori'</script>";
 		} else {
@@ -47,26 +47,31 @@ class Admin extends CI_Controller {
 	}
 	public function hapuskategori($id)
 	{
-		$query = $this->db->query("DELETE FROM `tbl kategori` WHERE id_kategori='$id'");
+		$query = $this->db->query("DELETE FROM tbl_kategori WHERE id_kategori='$id'");
 		echo "<script>alert('Kategori berhasil dihapus.'); location.href='/admin/kategori'</script>";
 	}
 	public function berita($id = '')
 	{
 		$this->load->view('admin/berita', array('id'=>$id));
 	}
+	public function hapusberita($id)
+	{
+		$this->db->delete('TBL_ADMINBERITA', array("ID_BERITA"=>$id));
+		echo "<script>alert('berita berhasil dihapus!'); location.href='/admin/berita'</script>";
+	}
 	public function updateberita()
 	{
 		$id = $this->input->post('id');
 		$judul = $this->input->post('judul');
 		$isi = $this->input->post('isi');
-		$foto = '';
+		// $foto = '';
 		
 		$data = [
 			'JUDUL' => $judul,
 			'ISI' => $isi
 		];
 		$this->db->where("ID_BERITA", $id);
-		$this->db->update("tbl_adminberita", $data);
+		$this->db->update("TBL_ADMINBERITA", $data);
 
 		if (!empty($_FILES['foto']['name'])) {
 			$config['upload_path']          = './pp/';
@@ -85,7 +90,7 @@ class Admin extends CI_Controller {
 				'FOTO' => $config['file_name']
 			];
 			$this->db->where("ID_BERITA", $id);
-			$this->db->update("tbl_adminberita", $data);
+			$this->db->update("TBL_ADMINBERITA", $data);
     	}
 		echo "<script>alert('Data berhasil disimpan!'); location.href='/admin/berita'</script>";
 
@@ -105,7 +110,7 @@ class Admin extends CI_Controller {
 				'USERNAME' => $this->input->post('username'),
 				'PASSWORD' => md5($this->input->post('password'))
 			];
-			$this->db->insert('tbl_admin', $data);
+			$this->db->insert('TBL_ADMIN', $data);
 			echo "<script>alert('Admin berhasil ditambahkan!'); location.href='/admin/admins'</script>";
 		} else {
 			echo "<script>alert('Password tidak sama!'); location.href='/admin/admins'</script>";
@@ -113,16 +118,17 @@ class Admin extends CI_Controller {
 	}
 	public function hapusadmin($id)
 	{
-		$this->db->delete('tbl_admin', array('username'=>$id));
+		$this->db->delete('TBL_ADMIN', array("USERNAME"=>$id));
 		echo "<script>alert('Admin berhasil dihapus!'); location.href='/admin/admins'</script>";
 	}
 	function simpanBerita() {
 		$data = [
 			'JUDUL' => $this->input->post("judul"),
 			'ISI' => $this->input->post('isi'),
-			'USERNAME' => $this->session->userdata('admin')
+			'USERNAME' => $this->session->userdata('admin'),
+			'WAKTU_POST'=>date('d-M-y')
 		];
-		$simpan = $this->db->insert('tbl_adminberita', $data);
+		$simpan = $this->db->insert('TBL_ADMINBERITA', $data);
 		if($simpan) {
 			echo "<script>alert('Data berhasil disimpan!'); location.href='/admin/berita'</script>";
 		} else {

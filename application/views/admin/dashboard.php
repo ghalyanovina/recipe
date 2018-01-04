@@ -1,6 +1,45 @@
 <?php
 $this->load->view("admin/header");
 ?>
+<?php
+//DEFINISIKAN PROPINSI
+$PROPINSI = [
+    'Jawa Timur',
+    'Jawa Barat',
+    'Jawa Tengah',
+    'Nangro Aceh Darussalam',
+    'Sumatera Utara',
+    'Sumatera Barat',
+    'Riau',
+    'Kepulauan Riau',
+    'Jambi',
+    'Sumatera Selatan',
+    'Bangka Belitung',
+    'Bengkulu',
+    'Lampung',
+    'DKI Jakarta',
+    'Banten',
+    'Daerah Istimewa Yogyakarta',
+    'Bali',
+    'Nusa Tenggara Barat',
+    'Nusa Tenggara Timur',
+    'Kalimantan Barat',
+    'Kalimantan Tengah',
+    'Kalimantan Selatan',
+    'Kalimantan Timur',
+    'Kalimantan Utara',
+    'Sulawesi Utara',
+    'Sulawesi Barat',
+    'Sulawesi Tengah',
+    'Sulawesi Tenggara',
+    'Sulawesi Selatan',
+    'Gorontalo',
+    'Maluku',
+    'Maluku Utara',
+    'Papua Barat',
+    'Papua'
+];
+?>
 <div id="page-wrapper">
 	<div class="row">
 		<div class="col-lg-12">
@@ -16,11 +55,12 @@ $this->load->view("admin/header");
           <tbody>
             <?php 
             $no = 1;
-            $query = $this->db->query("select t.id_thread, t.judul, ifnull(sum(r.jumlah_rating),0)/count(r.id_rating) jumlahrr, t.daerah from `tbl thread` t left join tbl_rating r on r.id_thread=t.id_thread group by t.id_thread order by jumlahrr desc limit 10")->result();
+            $query = $this->db->query("select t.id_thread, t.judul, NVL(sum(r.jumlah_rating),0)/count(r.id_rating) as JUMLAHRR, t.daerah from tbl_thread t left join tbl_rating r on r.id_thread=t.id_thread group by t.id_thread, t.judul, t.daerah, r.jumlah_rating order by JUMLAHRR")->result();
+            // * limit removed due to unknown syntax
             foreach ($query as $data) {
             ?>
             <tr>
-              <td><?= $no++ ?></td><td><?= $data->judul ?></td><td><?= $data->daerah ?></td><td><?= number_format($data->jumlahrr, 2, ',','.') ?></td><td></td>
+              <td><?= $no++ ?></td><td><?= $data->JUDUL ?></td><td><?= $data->DAERAH ?></td><td><?= number_format($data->JUMLAHRR, 2, ',','.') ?></td><td></td>
             </tr>
             <?php 
             }
@@ -45,13 +85,13 @@ $this->load->view("admin/header");
           <tbody>
             <?php 
             $no = 1;
-            foreach (PROPINSI as $provinsi) {
-              $artikel = $this->db->query("SELECT count(*) jumlah FROM `tbl thread` WHERE daerah='$provinsi'")->row();
+            for($i=0; $i < count($PROPINSI); $i++){
+              $artikel = $this->db->query("SELECT count(*) jumlah FROM tbl_thread WHERE daerah='$PROPINSI[$i]'")->row();
             ?>
             <tr>
-              <td><?= $no++ ?></td><td><?= $provinsi ?></td><td><?= $artikel->jumlah ?></td>
+              <td><?= $no++ ?></td><td><?= $PROPINSI[$i] ?></td><td><?= $artikel->JUMLAH ?></td>
             </tr>
-            <?php 
+            <?php
             }
             ?>
 				</div>

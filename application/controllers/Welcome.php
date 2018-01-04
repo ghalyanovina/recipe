@@ -20,6 +20,7 @@ class Welcome extends CI_Controller {
 		/*$this->load->model('tbl_admin');
 		var_dump($this->tbl_admin->cobaAmbilData());*/
 	}
+	
 	public function kategori($id ='', $hal='')
 	{
 		$kategori = $this->db->query("SELECT * FROM `tbl kategori` WHERE id_kategori='$id'")->row();
@@ -38,9 +39,12 @@ class Welcome extends CI_Controller {
 	
 	private function cekLogin()
 	{
-		if($this->session->has_userdata('username')) {
+		if($this->session->has_userdata('username')) 
+		{
 			$this->data['login'] = true;
-		} else {
+		}
+		else
+		{
 			$this->data['login'] = false;
 		}
 	}

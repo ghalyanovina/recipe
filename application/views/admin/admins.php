@@ -33,7 +33,7 @@ $this->load->view("admin/header");
                     </thead>
                     <tbody>
                         <?php 
-                        $admins = $this->db->get('tbl_admin')->result();
+                        $admins = $this->db->get('TBL_ADMIN')->result();
                         $no = 0;
                         foreach ($admins as $admin) {
                             $no++;

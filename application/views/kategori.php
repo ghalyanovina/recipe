@@ -42,9 +42,9 @@ switch ($id) {
 	<div class="row">
 		<?php 
 		$perhal = 20;
-		$semua = $this->db->query("SELECT count(id_thread) as total FROM `tbl thread`")->row();
+		$semua = $this->db->query("SELECT count(id_thread) as total FROM TBL_THREAD")->row();
 		$jumlahHal = ceil($semua->total/$perhal);
-		$query = "SELECT t.id_thread AS id_thread, t.judul AS judul, t.foto AS foto, t.isi AS isi, t.waktu_post AS waktu_post, k.kategori AS kategori, u.nama AS penulis from `tbl thread` as t LEFT JOIN `tbl kategori` AS k ON t.id_kategori=k.id_kategori LEFT JOIN user AS u ON u.username=t.username";
+		$query = "SELECT t.id_thread AS id_thread, t.judul AS judul, t.foto AS foto, t.isi AS isi, t.waktu_post AS waktu_post, k.kategori AS kategori, u.nama AS penulis from tbl_thread t LEFT JOIN tbl_kategori k ON t.id_kategori=k.id_kategori LEFT JOIN user u ON u.username=t.username";
 		if($id !== '') {
 			$query = $query." WHERE t.id_kategori = '$id'";
 		}
@@ -66,11 +66,11 @@ switch ($id) {
 		?>
 		<div class="media">
 			<div class="media-left">
-				<img src="/uploads/<?php echo $post->foto ?>" height="128" width="128" class="media-object">
+				<img src="/uploads/<?php echo $post->FOTO ?>" height="128" width="128" class="media-object">
 			</div>
 			<div class="media-body">
-				<a href="/artikel/<?= $post->id_thread ?>" class="media-heading"><h3 class="page-heading"><?php echo $post->judul ?></h3></a>
-				<i><small class="info">Tanggal: <?php echo $post->waktu_post ?></small> <small mclass="info">Penulis: <?php echo $post->penulis ?></small><small class="info"><?php $post->kategori ?></small></i>
+				<a href="/artikel/<?= $post->ID_THREAD ?>" class="media-heading"><h3 class="page-heading"><?php echo $post->JUDUL ?></h3></a>
+				<i><small class="info">Tanggal: <?php echo $post->WAKTU_POST ?></small> <small mclass="info">Penulis: <?php echo $post->PENULIS ?></small><small class="info"><?php $post->KATEGORI ?></small></i>
 			</div>
 		</div>
 		<?php
